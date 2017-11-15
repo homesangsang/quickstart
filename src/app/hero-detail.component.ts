@@ -1,5 +1,12 @@
-import {Component, Input} from '@angular/core';
+import { OnInit, Component, Input, Output} from '@angular/core';
 import { Hero } from './hero';
+// Keep the Input import for now, you'll remove it later:
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location }                 from '@angular/common';
+
+import { HeroService } from './hero.service';
+import 'rxjs/add/operator/switchMap';
+
 @Component({
 	selector: 'hero-detail',
 	template: `
@@ -14,6 +21,14 @@ import { Hero } from './hero';
 	`,
 })
 
-export class heroDetailComponent {
+export class heroDetailComponent implements OnInit {
 	@Input() hero: Hero;
+  constructor(
+    private heroService: HeroService,
+    private route: ActivatedRoute,
+    private location: Location
+    ){}
+  ngOnInit(): void {
+    
+  }
 }

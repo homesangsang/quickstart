@@ -10,9 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var hero_1 = require("./hero");
+// Keep the Input import for now, you'll remove it later:
+var router_1 = require("@angular/router");
+var common_1 = require("@angular/common");
+var hero_service_1 = require("./hero.service");
+require("rxjs/add/operator/switchMap");
 var heroDetailComponent = (function () {
-    function heroDetailComponent() {
+    function heroDetailComponent(heroService, route, location) {
+        this.heroService = heroService;
+        this.route = route;
+        this.location = location;
     }
+    heroDetailComponent.prototype.ngOnInit = function () {
+    };
     return heroDetailComponent;
 }());
 __decorate([
@@ -23,7 +33,10 @@ heroDetailComponent = __decorate([
     core_1.Component({
         selector: 'hero-detail',
         template: "\n\t\t<div *ngIf=\"hero\">\n  \t\t\t<h2>{{hero.name}} details!</h2>\n  \t\t\t<div><label>id: </label>{{hero.id}}</div>\n  \t\t\t<div>\n  \t\t\t\t<label>name: </label>\n  \t\t\t\t<input [(ngModel)]=\"hero.name\" placeholder=\"name\"/>\n  \t\t\t<div>\n  \t\t</div>\n\t",
-    })
+    }),
+    __metadata("design:paramtypes", [hero_service_1.HeroService,
+        router_1.ActivatedRoute,
+        common_1.Location])
 ], heroDetailComponent);
 exports.heroDetailComponent = heroDetailComponent;
 //# sourceMappingURL=hero-detail.component.js.map
